@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaleStockAPI", "SaleStockAPI\SaleStockAPI.csproj", "{CE76A31A-6188-4A46-A24F-3FB6C5695823}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaleStockAPI.Tests", "SaleStockAPI.Tests\SaleStockAPI.Tests.csproj", "{2E2BCD38-D932-46A0-8B6E-E34E3498BC03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE76A31A-6188-4A46-A24F-3FB6C5695823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE76A31A-6188-4A46-A24F-3FB6C5695823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE76A31A-6188-4A46-A24F-3FB6C5695823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE76A31A-6188-4A46-A24F-3FB6C5695823}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E2BCD38-D932-46A0-8B6E-E34E3498BC03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E2BCD38-D932-46A0-8B6E-E34E3498BC03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E2BCD38-D932-46A0-8B6E-E34E3498BC03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E2BCD38-D932-46A0-8B6E-E34E3498BC03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

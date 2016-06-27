@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SaleStockModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SaleStockModelStoreContainer">
+          <EntitySet Name="MsCategory" EntityType="SaleStockModel.Store.MsCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MsProduct" EntityType="SaleStockModel.Store.MsProduct" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_MsProduct_MsCategory" Association="SaleStockModel.Store.FK_MsProduct_MsCategory">
+            <End Role="MsCategory" EntitySet="MsCategory" />
+            <End Role="MsProduct" EntitySet="MsProduct" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MsCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCategoryName" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MsProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCode" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProductSize" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="ProductColor" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ProductPrice" Type="int" Nullable="false" />
+          <Property Name="ProductCategoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_MsProduct_MsCategory">
+          <End Role="MsCategory" Type="SaleStockModel.Store.MsCategory" Multiplicity="1" />
+          <End Role="MsProduct" Type="SaleStockModel.Store.MsProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MsCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="MsProduct">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SaleStockModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SaleStockEntities" p1:LazyLoadingEnabled="false">
+          <EntitySet Name="MsCategories" EntityType="SaleStockModel.MsCategory" />
+          <EntitySet Name="MsProducts" EntityType="SaleStockModel.MsProduct" />
+          <AssociationSet Name="FK_MsProduct_MsCategory" Association="SaleStockModel.FK_MsProduct_MsCategory">
+            <End Role="MsCategory" EntitySet="MsCategories" />
+            <End Role="MsProduct" EntitySet="MsProducts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MsCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="MsProducts" Relationship="SaleStockModel.FK_MsProduct_MsCategory" FromRole="MsCategory" ToRole="MsProduct" a:GetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        </EntityType>
+        <EntityType Name="MsProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ProductSize" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="ProductColor" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ProductPrice" Type="Int32" Nullable="false" />
+          <Property Name="ProductCategoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MsCategory" Relationship="SaleStockModel.FK_MsProduct_MsCategory" FromRole="MsProduct" ToRole="MsCategory" a:GetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        </EntityType>
+        <Association Name="FK_MsProduct_MsCategory">
+          <End Type="SaleStockModel.MsCategory" Role="MsCategory" Multiplicity="1" />
+          <End Type="SaleStockModel.MsProduct" Role="MsProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MsCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="MsProduct">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SaleStockModelStoreContainer" CdmEntityContainer="SaleStockEntities">
+          <EntitySetMapping Name="MsCategories">
+            <EntityTypeMapping TypeName="SaleStockModel.MsCategory">
+              <MappingFragment StoreEntitySet="MsCategory">
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MsProducts">
+            <EntityTypeMapping TypeName="SaleStockModel.MsProduct">
+              <MappingFragment StoreEntitySet="MsProduct">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductSize" ColumnName="ProductSize" />
+                <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

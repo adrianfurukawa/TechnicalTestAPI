@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SaleStockModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SaleStockModelStoreContainer">
+    <EntitySet Name="MsCategory" EntityType="SaleStockModel.Store.MsCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MsProduct" EntityType="SaleStockModel.Store.MsProduct" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_MsProduct_MsCategory" Association="SaleStockModel.Store.FK_MsProduct_MsCategory">
+      <End Role="MsCategory" EntitySet="MsCategory" />
+      <End Role="MsProduct" EntitySet="MsProduct" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MsCategory">
+    <Key>
+      <PropertyRef Name="ProductCategoryID" />
+    </Key>
+    <Property Name="ProductCategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProductCategoryName" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="MsProduct">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProductCode" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="ProductSize" Type="nvarchar" Nullable="false" MaxLength="5" />
+    <Property Name="ProductColor" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ProductPrice" Type="int" Nullable="false" />
+    <Property Name="ProductCategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_MsProduct_MsCategory">
+    <End Role="MsCategory" Type="SaleStockModel.Store.MsCategory" Multiplicity="1" />
+    <End Role="MsProduct" Type="SaleStockModel.Store.MsProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsCategory">
+        <PropertyRef Name="ProductCategoryID" />
+      </Principal>
+      <Dependent Role="MsProduct">
+        <PropertyRef Name="ProductCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
